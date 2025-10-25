@@ -2,6 +2,7 @@ import'./style.css'
 import { useState, useEffect } from 'react'
 import { db } from '../../firebase.js'
 import { collecttion, addDoc, getDocs, doc } from 'firebase/firestore'
+import  Trash from '../../assets/trash.svg'
 
 function Home() {
     const [nome, setNome] = useState('')
