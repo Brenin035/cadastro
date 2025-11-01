@@ -2,11 +2,12 @@ import'./style.css'
 import { useState, useEffect } from 'react'
 import { db } from '../../firebase.js'
 import { collecttion, addDoc, getDocs, doc } from 'firebase/firestore'
-import  Trash from '../../assets/trash.svg'
+import  Trash from '../../assets/delete.png'
+
 
 function Home() {
     const [nome, setNome] = useState('')
-    const [age, setIdade] = useState('')
+    const [age, setAge] = useState('')
     const [email, setEmail] = useState('')
     const [users, setUsers] = useState([])
 
@@ -49,5 +50,49 @@ function Home() {
         setUsers(updatedusers)
     }
 
-    return ()
+    return (
+        <div className='container'>
+            <form>
+              <h1>Cadastro de Usuários</h1>
+               <input
+                name= 'Nome'
+                type='text'
+                placeholder='Nome'
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                />
+                <input
+                name= 'Idade'
+                type='number'
+                placeholder='Idade'
+                value={age}
+                onChange={e => setAge (e.target.value)}
+                />
+                <input
+                name= 'Email'
+                type='email'
+                placeholder='Email'
+                value={email}
+                onChange={e => setEmail (e.target.value)}
+                />
+                <button type='button' onClick={handleAddUser}>Cadastrar</button>
+                </form>
+
+                {users.map (user => (
+                    <div key={user.id} className='card'>
+                        <div>
+                            <p>Nome: <span>{user.name}</span></p>
+                            <p>Idade: <span>{user.age}</span></p>
+                            <p>Email: <span>{user.email}</span></p>
+                        </div>
+                        <button onClick={() => handleDeletelocal(user.id)}>
+                            <img src={Trash} alt='Excluir' />
+                        </button>
+                    </div>
+                ))}
+        </div>
+    )
 }
+
+
+export default Home 

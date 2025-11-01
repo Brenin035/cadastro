@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    align-items: center;
+    padding-top 100px;
+    flex-direction: column;
+}
+
+h1{
+    color: azure;
+    font-size: 28px;
+    text-align: center;
+}
